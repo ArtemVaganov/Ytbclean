@@ -2,32 +2,51 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>YouTube Web App</title>
+  <title>YouTube Player</title>
 
   <!-- Web App мета-теги -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#000000">
+  <link rel="apple-touch-icon" href="https://www.youtube.com/s/desktop/f9c16a36/img/favicon_144.png">
 
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      background: black;
+      background-color: black;
       height: 100%;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: sans-serif;
+      overflow: hidden;
+    }
+    #player {
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
 <body>
-  <noscript>Перенаправление на YouTube...</noscript>
+  <div id="player"></div>
+
   <script>
-    window.location.replace("https://m.youtube.com");
+    // Загрузка API YouTube
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+
+    // Инициализация плеера
+    var player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        videoId: 'dQw4w9WgXcQ', // ВСТАВЬ СЮДА ID нужного видео
+        playerVars: {
+          autoplay: 1,
+          controls: 1,
+          modestbranding: 1,
+          rel: 0
+        }
+      });
+    }
   </script>
 </body>
 </html>
